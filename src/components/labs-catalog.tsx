@@ -54,7 +54,7 @@ const accentMap: Record<string, string> = {
 
 function loadProgress(): Record<string, number> {
   try {
-    return JSON.parse(localStorage.getItem("devfixes:labs-progress") ?? "{}") as Record<string, number>;
+    return JSON.parse(localStorage.getItem("MediaToolkit:labs-progress") ?? "{}") as Record<string, number>;
   } catch {
     return {};
   }
@@ -84,7 +84,7 @@ export function LabsCatalog({
         <div className="section-shell py-14 sm:py-20">
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <span className="eyebrow">DevFixes Labs</span>
+              <span className="eyebrow">MediaToolkit Labs</span>
               <h1 className="mt-5 text-4xl leading-tight font-semibold sm:text-6xl">
                 Learn debugging by doing.
               </h1>

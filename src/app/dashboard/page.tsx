@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import { Award, CheckCircle2, Clock3, Flame, Target, TrendingUp } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Your progress",
+  description: "Track completed debugging scenarios, scores, and consistency.",
+  robots: { index: false, follow: true },
+};
 
 const history = [
   ["Python package in the wrong environment", "Dependencies", 920, "8 min"],

@@ -278,7 +278,7 @@ export function createLocalAnalysis(input: string): DebugAnalysis {
     summary: article?.excerpt ?? fingerprint.rootCause,
     explanation:
       article?.aiExplanation ??
-      "DevFixes could not match this input to a verified fingerprint yet. The highlighted lines contain the strongest failure signals.",
+      "MediaToolkit could not match this input to a verified fingerprint yet. The highlighted lines contain the strongest failure signals.",
     rootCause: fingerprint.rootCause,
     confidence: fingerprint.confidence,
     suspiciousLines: fingerprint.relevantLines.map((line) => ({

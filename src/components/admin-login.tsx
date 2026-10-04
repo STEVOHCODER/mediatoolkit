@@ -34,14 +34,14 @@ export function AdminLogin({ configured }: { configured: boolean }) {
         <span className="grid size-10 place-items-center rounded-md border border-accent/25 bg-accent/10 text-accent">
           <ShieldCheck size={18} />
         </span>
-        <h1 className="mt-5 text-2xl font-semibold">DevFixes admin</h1>
+        <h1 className="mt-5 text-2xl font-semibold">MediaToolkit admin</h1>
         <p className="mt-2 text-xs leading-6 text-muted">
           Manage verified errors, debugging methods, tutorials, commands, FAQs, and
           publication status.
         </p>
         {!configured ? (
           <div className="mt-5 rounded-md border border-[#e7c861]/25 bg-[#e7c861]/8 p-3 text-[10px] leading-5 text-[#e7d89f]">
-            Set <code className="font-mono">DEVFIXES_ADMIN_TOKEN</code> in your environment before signing in.
+            Set <code className="font-mono">MediaToolkit_ADMIN_TOKEN</code> in your environment before signing in.
           </div>
         ) : null}
         <label className="mt-6 block text-[9px] font-bold uppercase text-faint" htmlFor="admin-token">

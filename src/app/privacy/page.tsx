@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "How DevFixes handles diagnostic input and uploaded logs.",
+  description: "How MediaToolkit handles diagnostic input and uploaded logs.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -15,7 +16,7 @@ export default function PrivacyPage() {
           <h2 className="text-xl font-semibold">Before you submit</h2>
           <p className="mt-3">
             Remove passwords, API keys, access tokens, personal data, and production secrets
-            from logs and stack traces. DevFixes limits input length, but it cannot identify
+            from logs and stack traces. MediaToolkit limits input length, but it cannot identify
             every secret automatically.
           </p>
         </section>

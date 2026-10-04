@@ -1,4 +1,11 @@
+import type { Metadata } from "next";
 import { Crown, Medal, Trophy } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Leaderboard",
+  description: "Community rankings by verified debugging scenario score.",
+  robots: { index: false, follow: true },
+};
 
 const leaders = [
   ["Amina K.", "Python Pathfinder", 12480, 38],

@@ -13,7 +13,7 @@ const requestSchema = z.object({
   hintLevel: z.number().int().min(0).max(10),
 });
 
-const mentorPrompt = `You are the DevFixes Labs mentor.
+const mentorPrompt = `You are the MediaToolkit Labs mentor.
 The learner is debugging inside a safe simulator. Give one concise, Socratic hint.
 Do not reveal the complete solution unless the learner has already exhausted the evidence.
 Ask the learner to inspect one concrete signal or test one concrete hypothesis.

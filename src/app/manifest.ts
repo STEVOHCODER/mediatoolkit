@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "DevFixes",
-    short_name: "DevFixes",
+    name: "MediaToolkit",
+    short_name: "MediaToolkit",
     description: "Search, understand, and fix programming errors faster.",
     start_url: "/",
     display: "standalone",

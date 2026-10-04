@@ -42,7 +42,7 @@ const analysisSchema = z.object({
   relatedSlugs: z.array(z.string()).max(5),
 });
 
-const systemPrompt = `You are DevFixes, a precise senior debugging assistant.
+const systemPrompt = `You are MediaToolkit, a precise senior debugging assistant.
 Analyze the supplied error, log, compiler output, or stack trace.
 
 Rules:
@@ -177,7 +177,7 @@ export async function POST(request: Request) {
       input: `Analyze this diagnostic input:\n\n${input}`,
       reasoning: { effort: "low" },
       text: {
-        format: zodTextFormat(analysisSchema, "devfixes_debug_analysis"),
+        format: zodTextFormat(analysisSchema, "MediaToolkit_debug_analysis"),
       },
     });
 

@@ -8,17 +8,19 @@ import "./globals.css";
 const geist = Geist({ variable: "--font-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-mono", subsets: ["latin"] });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://devfixes.dev";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediatoolkit.tech";
+
+const siteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "DevFixes - Fix programming errors faster",
-    template: "%s | DevFixes",
+    default: "MediaToolkit - Fix programming errors faster",
+    template: "%s | MediaToolkit",
   },
   description:
     "Search exact programming errors and stack traces, compare verified answers, ask debugging questions, and practice fixes in an interactive coding lab.",
-  applicationName: "DevFixes",
+  applicationName: "MediaToolkit",
   keywords: [
     "programming errors",
     "debugging",
@@ -34,19 +36,21 @@ export const metadata: Metadata = {
     shortcut: "/icon.svg",
   },
   manifest: "/manifest.webmanifest",
-  alternates: { canonical: "/" },
+  verification: siteVerification ? { google: siteVerification } : undefined,
   openGraph: {
     type: "website",
-    siteName: "DevFixes",
+    siteName: "MediaToolkit",
     title: "Fix programming errors faster",
     description:
       "Search an error or stack trace, understand the root cause, and test the verified fix.",
     url: siteUrl,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "MediaToolkit" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevFixes",
+    title: "MediaToolkit",
     description: "Programming errors in. Verified answers and practice out.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

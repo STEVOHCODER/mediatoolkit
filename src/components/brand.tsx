@@ -6,7 +6,7 @@ export function Brand() {
       <span className="relative grid size-9 place-items-center rounded-xl bg-accent text-white shadow-sm">
         <span className="font-mono text-sm">&gt;_</span>
       </span>
-      <span className="text-lg tracking-tight">DevFixes</span>
+      <span className="text-lg tracking-tight">MediaToolkit</span>
     </Link>
   );
 }

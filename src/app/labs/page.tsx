@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LabsCatalog } from "@/components/labs-catalog";
 
 export const metadata: Metadata = {
-  title: "DevFixes Labs",
+  title: "MediaToolkit Labs",
   description:
     "Practice solving realistic programming errors inside safe, interactive debugging labs.",
   alternates: { canonical: "/labs" },

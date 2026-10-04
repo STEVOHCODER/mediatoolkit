@@ -186,7 +186,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
   const [scenario, setScenario] = useState<UserScenario>(firstScenario);
   const [search, setSearch] = useState("");
   const [editor, setEditor] = useState(firstScenario.starterCode);
-  const [terminalLines, setTerminalLines] = useState<string[]>(["DevFixes runtime ready", `Loaded: ${firstScenario.title}`, "Reproduce the failure, inspect evidence, then fix it."]);
+  const [terminalLines, setTerminalLines] = useState<string[]>(["MediaToolkit runtime ready", `Loaded: ${firstScenario.title}`, "Reproduce the failure, inspect evidence, then fix it."]);
   const [command, setCommand] = useState("");
   const [hintIndex, setHintIndex] = useState(0);
   const [attempts, setAttempts] = useState(0);
@@ -215,7 +215,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
 
   useEffect(() => {
     try {
-      const stored = JSON.parse(localStorage.getItem("devfixes:custom-scenarios") ?? "[]") as unknown[];
+      const stored = JSON.parse(localStorage.getItem("MediaToolkit:custom-scenarios") ?? "[]") as unknown[];
       if (Array.isArray(stored)) setCustomScenarios(stored.map((item) => makeImportedScenario(item, "custom-case.json")));
     } catch { /* Ignore malformed local drafts. */ }
   }, []);
@@ -228,7 +228,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
     setScenario(nextScenario);
     setEnvironment(nextScenario.environment);
     setEditor(nextScenario.starterCode);
-    setTerminalLines(["DevFixes runtime ready", `Loaded: ${nextScenario.title}`, "Reproduce the failure, inspect evidence, then fix it."]);
+    setTerminalLines(["MediaToolkit runtime ready", `Loaded: ${nextScenario.title}`, "Reproduce the failure, inspect evidence, then fix it."]);
     setCommand("");
     setHintIndex(0);
     setAttempts(0);
@@ -246,8 +246,8 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
     setSolved(true);
     setTerminalLines((lines) => [...lines, output]);
     try {
-      const current = JSON.parse(localStorage.getItem("devfixes:universal-progress") ?? "{}") as Record<string, number>;
-      localStorage.setItem("devfixes:universal-progress", JSON.stringify({ ...current, [scenario.id]: score }));
+      const current = JSON.parse(localStorage.getItem("MediaToolkit:universal-progress") ?? "{}") as Record<string, number>;
+      localStorage.setItem("MediaToolkit:universal-progress", JSON.stringify({ ...current, [scenario.id]: score }));
     } catch { /* Progress is best effort. */ }
   }
 
@@ -305,7 +305,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
       const imported = makeImportedScenario(raw, file.name);
       const next = [...customScenarios.filter((item) => item.id !== imported.id), imported];
       setCustomScenarios(next);
-      localStorage.setItem("devfixes:custom-scenarios", JSON.stringify(next));
+      localStorage.setItem("MediaToolkit:custom-scenarios", JSON.stringify(next));
       loadScenario(imported);
     });
     event.target.value = "";
@@ -317,7 +317,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
     const custom = makeImportedScenario({ ...draft, id: `custom-${Date.now()}`, fileName: `${draft.title.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-")}.txt`, language: draft.environment, reproduceCommand: "run example", successOutput: "✓ Verification complete", fixPatterns: [draft.fixCommand], diagnosticCommands: { "inspect error": draft.explanation || draft.errorOutput }, hints: ["Read the error literally.", "Compare the broken and fixed examples."] , teaching: { concept: "Your debugging case", whyItHappens: draft.explanation, observe: ["Capture the first useful line.", "Name the evidence that supports your hypothesis."], steps: ["Reproduce the issue.", "Inspect the evidence.", "Apply and verify the fix."], brokenExample: draft.starterCode, fixedExample: draft.fixedCode } }, "custom-case.json");
     const next = [...customScenarios, custom];
     setCustomScenarios(next);
-    localStorage.setItem("devfixes:custom-scenarios", JSON.stringify(next));
+    localStorage.setItem("MediaToolkit:custom-scenarios", JSON.stringify(next));
     setAuthoring(false);
     loadScenario(custom);
     setDraft({ title: "", environment, category: "Custom case", difficulty: "Beginner", errorOutput: "", explanation: "", starterCode: "", fixedCode: "", fixCommand: "" });
@@ -351,7 +351,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
       <header className="border-b border-line bg-white/95 backdrop-blur">
         <div className="mx-auto max-w-[1800px] px-4 py-3 sm:px-6">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="min-w-0"><span className="text-[10px] font-bold uppercase tracking-[.18em] text-accent">DevFixes learning IDE</span><h1 className="mt-0.5 truncate text-lg font-bold sm:text-xl">Debug the cause, not just the symptom</h1></div>
+            <div className="min-w-0"><span className="text-[10px] font-bold uppercase tracking-[.18em] text-accent">MediaToolkit learning IDE</span><h1 className="mt-0.5 truncate text-lg font-bold sm:text-xl">Debug the cause, not just the symptom</h1></div>
             <div className="flex items-center gap-2"><button type="button" onClick={() => setShowHow((value) => !value)} className="flex h-9 items-center gap-1.5 rounded-lg border border-line bg-white px-3 text-[10px] font-bold text-accent"><BookOpen size={13} /> How to use</button><span className="hidden items-center gap-1.5 rounded-lg border border-line bg-background px-3 py-2 text-[10px] text-muted sm:flex"><Clock3 size={13} /> {scenario.estimatedTime}</span><span className="hidden items-center gap-1.5 rounded-lg border border-line bg-background px-3 py-2 text-[10px] text-muted sm:flex"><Trophy size={13} className="text-accent" /> {score} XP</span><button type="button" onClick={() => setLeftOpen((value) => !value)} className="grid size-9 place-items-center rounded-lg border border-line bg-white text-muted hover:text-accent" aria-label={leftOpen ? "Collapse scenario rail" : "Open scenario rail"}>{leftOpen ? <PanelLeftClose size={15} /> : <PanelLeftOpen size={15} />}</button><button type="button" onClick={() => setRightOpen((value) => !value)} className="grid size-9 place-items-center rounded-lg border border-line bg-white text-muted hover:text-accent" aria-label={rightOpen ? "Collapse guide rail" : "Open guide rail"}>{rightOpen ? <PanelRightClose size={15} /> : <PanelRightOpen size={15} />}</button><button type="button" onClick={() => setFocusMode((value) => !value)} className="grid size-9 place-items-center rounded-lg border border-line bg-white text-muted hover:text-accent" aria-label={focusMode ? "Exit focus mode" : "Open focus mode"}>{focusMode ? <Minimize2 size={15} /> : <Maximize2 size={15} />}</button></div>
           </div>
           {showHow ? <div className="mt-3 grid gap-2 rounded-xl border border-accent/15 bg-accent/5 p-3 sm:grid-cols-4">{[["1", "Pick a challenge", "Open the left rail or choose a tool."], ["2", "Reproduce", "Run the supplied command and read the first useful line."], ["3", "Investigate", "Try diagnostics, edit code, or ask Gemini for a hypothesis."], ["4", "Fix and verify", "Apply the smallest change, then rerun the original command."]].map(([step, title, detail]) => <div key={step} className="flex gap-2"><span className="grid size-6 shrink-0 place-items-center rounded-full bg-accent text-[10px] font-bold text-white">{step}</span><span><b className="block text-[11px]">{title}</b><small className="text-[10px] leading-4 text-muted">{detail}</small></span></div>)}</div> : null}
@@ -365,7 +365,7 @@ export function UniversalLab({ initialEnvironment }: { initialEnvironment?: stri
         {leftOpen ? <aside className="app-card order-2 self-start overflow-hidden 2xl:order-1 2xl:sticky 2xl:top-4"><div className="flex items-center justify-between border-b border-line p-3"><span className="text-[10px] font-bold uppercase tracking-wide text-faint">Challenge library</span><button type="button" onClick={() => setAuthoring(true)} className="grid size-7 place-items-center rounded-md bg-accent text-white" aria-label="Create a challenge"><Plus size={14} /></button></div><div className="border-b border-line p-3"><label className="flex h-9 items-center gap-2 rounded-lg border border-line bg-background px-3 text-xs text-faint"><Search size={14} /><input value={search} onChange={(event) => setSearch(event.target.value)} className="min-w-0 flex-1 bg-transparent outline-none" placeholder="Search errors" /></label><div className="mt-2 flex gap-2"><button type="button" onClick={() => fileInputRef.current?.click()} className="flex flex-1 items-center justify-center gap-1 rounded-md border border-line px-2 py-2 text-[10px] font-bold text-muted hover:text-accent"><FileUp size={13} /> Import</button><button type="button" onClick={exportScenario} className="flex flex-1 items-center justify-center gap-1 rounded-md border border-line px-2 py-2 text-[10px] font-bold text-muted hover:text-accent"><Download size={13} /> Export</button></div></div><div className="max-h-[calc(100vh-260px)] overflow-y-auto p-2">{visibleScenarios.map((item) => <button key={item.id} type="button" onClick={() => loadScenario(item)} className={`mb-1 block w-full rounded-lg border p-3 text-left transition ${scenario.id === item.id ? "border-accent/30 bg-accent/8" : "border-transparent hover:bg-background"}`}><span className="flex items-start justify-between gap-2"><b className="text-xs leading-5">{item.title}</b><ChevronRight size={13} className={scenario.id === item.id ? "mt-1 text-accent" : "mt-1 text-faint"} /></span><span className="mt-2 flex items-center gap-2 text-[10px] text-faint"><span>{item.category}</span><span>•</span><span>{item.difficulty}</span>{item.id.startsWith("custom-") ? <span className="rounded bg-emerald-50 px-1.5 py-0.5 text-emerald-700">Your case</span> : null}</span></button>)}</div></aside> : <aside className="order-2 hidden 2xl:block"><button type="button" onClick={() => setLeftOpen(true)} className="grid size-12 place-items-center rounded-xl border border-line bg-white text-muted hover:text-accent" aria-label="Open scenario rail"><PanelLeftOpen size={17} /></button></aside>}
 
         <section className="order-1 min-w-0 overflow-hidden rounded-2xl border border-[#272c37] bg-[#0b0e14] shadow-[0_18px_50px_rgba(25,28,45,.18)] 2xl:order-2" data-testid="universal-workspace">
-          <div className="flex min-h-12 flex-wrap items-center justify-between gap-3 border-b border-[#252a35] bg-[#151923] px-4 py-2"><div className="flex min-w-0 items-center gap-3"><span className="flex shrink-0 gap-1.5"><i className="size-2.5 rounded-full bg-[#ff5f57]" /><i className="size-2.5 rounded-full bg-[#febc2e]" /><i className="size-2.5 rounded-full bg-[#28c840]" /></span><span className="truncate font-mono text-[11px] text-[#9da7b5]">devfixes / {environment} / {scenario.id}</span></div><div className="flex gap-2"><button type="button" onClick={reset} className="flex h-8 items-center gap-1.5 rounded-lg border border-[#303644] px-3 text-[10px] font-bold text-[#aab3c0]"><RotateCcw size={12} /> Reset</button><button type="button" onClick={() => execute(scenario.reproduceCommand)} className="flex h-8 items-center gap-1.5 rounded-lg bg-accent px-3 text-[10px] font-bold text-white"><Play size={12} /> Reproduce</button></div></div>
+          <div className="flex min-h-12 flex-wrap items-center justify-between gap-3 border-b border-[#252a35] bg-[#151923] px-4 py-2"><div className="flex min-w-0 items-center gap-3"><span className="flex shrink-0 gap-1.5"><i className="size-2.5 rounded-full bg-[#ff5f57]" /><i className="size-2.5 rounded-full bg-[#febc2e]" /><i className="size-2.5 rounded-full bg-[#28c840]" /></span><span className="truncate font-mono text-[11px] text-[#9da7b5]">MediaToolkit / {environment} / {scenario.id}</span></div><div className="flex gap-2"><button type="button" onClick={reset} className="flex h-8 items-center gap-1.5 rounded-lg border border-[#303644] px-3 text-[10px] font-bold text-[#aab3c0]"><RotateCcw size={12} /> Reset</button><button type="button" onClick={() => execute(scenario.reproduceCommand)} className="flex h-8 items-center gap-1.5 rounded-lg bg-accent px-3 text-[10px] font-bold text-white"><Play size={12} /> Reproduce</button></div></div>
           <div className={`grid ${focusMode ? "min-h-[calc(100vh-205px)]" : "min-h-[500px]"} grid-rows-[minmax(190px,.8fr)_minmax(220px,1fr)]`}><div className="min-h-0 border-b border-[#252a35]"><div className="flex h-10 items-center gap-2 border-b border-[#252a35] bg-[#11151d] px-4 font-mono text-[10px] text-[#9da7b5]"><FileCode2 size={13} className="text-[#8b8cf8]" /> {scenario.fileName}<span className="text-[#565f6d]">{scenario.language}</span><span className="ml-auto text-[#565f6d]">Ctrl + Enter to reproduce</span></div><textarea value={editor} onChange={(event) => { setEditor(event.target.value); setSolved(false); }} spellCheck={false} className="h-[calc(100%-40px)] min-h-[150px] w-full resize-none bg-[#0d1117] p-4 font-mono text-[12px] leading-6 text-[#d4d9e2] outline-none" aria-label="Universal simulator editor" /></div><div className="flex min-h-0 flex-col" data-testid="universal-terminal"><div className="flex h-10 items-center justify-between border-b border-[#252a35] bg-[#11151d] px-4"><span className="flex items-center gap-2 font-mono text-[10px] text-[#9da7b5]"><Terminal size={13} className="text-[#8b8cf8]" /> {simulatorEnvironments.find((item) => item.id === environment)?.label} runtime</span><button type="button" onClick={copyTerminal} className="flex items-center gap-1 text-[10px] text-[#7f8998]"><Copy size={12} /> {copied ? "Copied" : "Copy output"}</button></div><pre className="min-h-0 flex-1 overflow-auto whitespace-pre-wrap p-4 font-mono text-[11px] leading-5 text-[#b8c0cc]" aria-live="polite">{terminalLines.join("\n\n")}</pre><form onSubmit={submitCommand} className="flex min-h-11 items-center gap-2 border-t border-[#252a35] bg-[#0d1117] px-4"><span className="font-mono text-sm text-[#71e6a5]">$</span><input value={command} onChange={(event) => setCommand(event.target.value)} className="min-w-0 flex-1 bg-transparent font-mono text-[12px] text-white outline-none placeholder:text-[#596271]" placeholder={`Try: ${scenario.reproduceCommand}`} aria-label="Universal terminal command" /><button type="submit" className="grid size-8 place-items-center rounded-lg bg-[#242a36] text-[#adb6c4]" aria-label="Run command"><Send size={13} /></button></form></div></div>
         </section>
 

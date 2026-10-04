@@ -248,7 +248,7 @@ export function AdminTutorialStudio({
           : { tutorial: raw, status: "draft" };
       const parsed = tutorialArticleSchema.safeParse(wrapped.tutorial);
       if (!parsed.success) {
-        setError("This JSON does not match the DevFixes tutorial format.");
+        setError("This JSON does not match the MediaToolkit tutorial format.");
         setNotice("");
         return;
       }
@@ -295,7 +295,7 @@ export function AdminTutorialStudio({
       ],
       publishedAt: today,
     };
-    downloadJson("devfixes-tutorial-template.json", {
+    downloadJson("MediaToolkit-tutorial-template.json", {
       status: "draft",
       tutorial,
     });
@@ -478,7 +478,7 @@ export function AdminTutorialStudio({
           ) : storageMode === "unavailable" ? (
             <div className="mt-3 rounded-md border border-[#ff8795]/25 bg-[#ff8795]/8 p-3 text-[9px] leading-5 text-[#ffb4bd]">
               <Database size={14} className="mb-2" />
-              Configure Supabase or enable DEVFIXES_LOCAL_PUBLISHING before saving.
+              Configure Supabase or enable MediaToolkit_LOCAL_PUBLISHING before saving.
             </div>
           ) : (
             <div className="mt-3 rounded-md border border-accent/20 bg-accent/5 p-3 text-[9px] leading-5 text-muted">

@@ -1,7 +1,10 @@
-# DevFixes
+# MediaToolkit
 
-Production Next.js application for searching, understanding, and fixing
-developer errors.
+Production Next.js application served on `https://mediatoolkit.tech` for
+searching, understanding, and fixing developer errors.
+
+The GitHub repository remains `STEVOHCODER/devfixes`; the Vercel project is
+`devfixes` and the production domain attached to it is `mediatoolkit.tech`.
 
 ## Product surfaces
 
@@ -201,7 +204,13 @@ GitHub Pages cannot run admin APIs, Supabase server access, uploads, or sandboxe
 
 ## Google AdSense
 
-Configure:
+The codebase is AdSense-ready. The loader script renders in the root layout only
+when `NEXT_PUBLIC_ADSENSE_CLIENT` exists, ad slots are placed on the home page,
+both article types, and search results, and `/ads.txt` is generated from the
+publisher ID. Until those values are set, nothing ad-related renders, so the
+site can be deployed and reviewed first.
+
+Configure in Vercel Production:
 
 ```text
 NEXT_PUBLIC_ADSENSE_CLIENT=ca-pub-...
@@ -212,13 +221,25 @@ NEXT_PUBLIC_ADSENSE_SLOT_ARTICLE=
 ```
 
 Ad placements are labeled and kept outside navigation, commands, copy controls,
-and debugger actions. `/ads.txt` is generated from the publisher ID. Before
-serving personalized ads in regulated regions, configure the required
-Google-certified consent management platform in the AdSense account.
+and debugger actions.
 
-Do not submit the site for AdSense review until it has a real domain, complete
-privacy/contact information, substantial original error content, and no empty
-or placeholder pages.
+### AdSense application checklist
+
+Work through this list before applying at AdSense with the domain
+`mediatoolkit.tech`:
+
+- [ ] `NEXT_PUBLIC_SITE_URL=https://mediatoolkit.tech` is set in Vercel Production
+- [ ] `/`, `/about`, `/contact`, `/privacy`, `/terms` return 200 and are linked from the footer
+- [ ] `https://mediatoolkit.tech/ads.txt` returns the `google.com, pub-...` line
+- [ ] `https://mediatoolkit.tech/robots.txt` points at `https://mediatoolkit.tech/sitemap.xml`
+- [ ] Property added to Google Search Console, sitemap submitted, no critical coverage errors
+- [ ] Substantial original error guides published — thin content is the most common rejection reason
+- [ ] No empty, stub, or placeholder pages left in the navigation
+- [ ] Google-certified CMP configured in the AdSense account before enabling personalized ads for EEA/UK traffic
+
+`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` can be set in Vercel to inject the Search
+Console meta tag into the root layout.
+
 
 ## Vercel deployment
 
@@ -228,7 +249,10 @@ vercel --prod
 ```
 
 Add the variables from `.env.example` to Development, Preview, and Production
-as appropriate. Set `NEXT_PUBLIC_SITE_URL` to the final production origin.
+as appropriate. Set `NEXT_PUBLIC_SITE_URL` to `https://mediatoolkit.tech` in
+Production; every canonical URL, sitemap entry, `robots.txt` host, and Open Graph
+url is derived from it (the code falls back to the same value when the variable
+is absent).
 
 The included `vercel.json` grants the AI debugger a 60-second function
 duration.

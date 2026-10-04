@@ -7,7 +7,7 @@ import { searchErrors } from "@/lib/fingerprint";
 
 export const metadata: Metadata = {
   title: "Search programming errors",
-  description: "Search the DevFixes index by error message, language, framework, or package.",
+  description: "Search the MediaToolkit index by error message, language, framework, or package.",
   alternates: { canonical: "/search" },
 };
 

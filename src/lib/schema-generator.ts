@@ -164,7 +164,7 @@ export function generateErrorPageSchema({
         "@type": "WebPage",
         "@id": pageUrl,
         url: pageUrl,
-        name: `${title} - DevFixes`,
+        name: `${title} - MediaToolkit`,
         description: excerpt,
         image: {
           "@type": "ImageObject",
@@ -189,12 +189,12 @@ export function generateErrorPageSchema({
         author: {
           "@type": "Organization",
           "@id": `${siteUrl}/#organization`,
-          name: "DevFixes",
+          name: "MediaToolkit",
         },
         publisher: {
           "@type": "Organization",
           "@id": `${siteUrl}/#organization`,
-          name: "DevFixes",
+          name: "MediaToolkit",
           logo: {
             "@type": "ImageObject",
             url: `${siteUrl}/icon.svg`,
@@ -275,7 +275,7 @@ export function generateErrorPageSchema({
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: "DevFixes",
+        name: "MediaToolkit",
         url: siteUrl,
         logo: {
           "@type": "ImageObject",
@@ -284,7 +284,7 @@ export function generateErrorPageSchema({
           height: 512,
         },
         sameAs: [
-          "https://github.com/STEVOHCODER/devfixes",
+          "https://github.com/STEVOHCODER/MediaToolkit",
         ],
         contactPoint: {
           "@type": "ContactPoint",
@@ -296,7 +296,7 @@ export function generateErrorPageSchema({
         "@type": "WebSite",
         "@id": `${siteUrl}/#website`,
         url: siteUrl,
-        name: "DevFixes",
+        name: "MediaToolkit",
         description: "Search programming errors, identify root causes, and get probability-ranked fixes",
         potentialAction: {
           "@type": "SearchAction",
@@ -345,7 +345,7 @@ export function generateTutorialSchema({
         educationalLevel: "Beginner to Advanced",
         author: {
           "@type": "Organization",
-          name: "DevFixes",
+          name: "MediaToolkit",
         },
         learningResourceType: "Tutorial",
         inLanguage: "en",
@@ -356,7 +356,7 @@ export function generateTutorialSchema({
         description: excerpt,
         author: {
           "@type": "Organization",
-          name: "DevFixes",
+          name: "MediaToolkit",
         },
         datePublished,
         dateModified,

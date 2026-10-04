@@ -243,7 +243,7 @@ export function AdminDashboard({
           : { article: raw, status: "draft" };
       const parsed = errorArticleSchema.safeParse(wrapped.article);
       if (!parsed.success) {
-        setError("This JSON does not match the DevFixes article format.");
+        setError("This JSON does not match the MediaToolkit article format.");
         setNotice("");
         return;
       }
@@ -323,7 +323,7 @@ export function AdminDashboard({
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
-    anchor.download = "devfixes-error-template.json";
+    anchor.download = "MediaToolkit-error-template.json";
     anchor.click();
     URL.revokeObjectURL(url);
   }
@@ -538,7 +538,7 @@ export function AdminDashboard({
                 <h2 className="mt-1 text-lg font-semibold">Write, review, publish.</h2>
               </div>
               <p className="max-w-md text-[9px] leading-5 text-faint">
-                Start from the structured form or import a DevFixes JSON file. Save to
+                Start from the structured form or import a MediaToolkit JSON file. Save to
                 Supabase as a draft, move it to review, then publish it to search and the
                 sitemap.
               </p>
@@ -751,7 +751,7 @@ export function AdminDashboard({
               <Field label="Syntax language">
                 <input value={codeLanguage} onChange={(event) => setCodeLanguage(event.target.value)} className={inputClass} placeholder="python" />
               </Field>
-              <Field label="Related slugs" hint="One DevFixes slug per line.">
+              <Field label="Related slugs" hint="One MediaToolkit slug per line.">
                 <textarea value={relatedSlugs} onChange={(event) => setRelatedSlugs(event.target.value)} className={textareaClass} />
               </Field>
             </div>

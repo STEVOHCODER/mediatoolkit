@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="MediaToolkit">
+  <rect width="64" height="64" rx="14" fill="#5b5bd6" />
+  <path d="M17 22 L28 32 L17 42" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  <rect x="33" y="38" width="15" height="5" rx="2.5" fill="#ffffff" />
+</svg>

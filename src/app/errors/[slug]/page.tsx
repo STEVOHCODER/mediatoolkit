@@ -74,7 +74,7 @@ export default async function ErrorPage({ params }: { params: Promise<{ slug: st
       allArticles.find((item) => item.slug === relatedSlug),
     )
     .filter((item): item is NonNullable<typeof item> => Boolean(item));
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://devfixes.dev"}/errors/${article.slug}`;
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediatoolkit.tech"}/errors/${article.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [

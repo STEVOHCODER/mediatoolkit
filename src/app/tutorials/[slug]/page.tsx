@@ -73,7 +73,7 @@ export default async function TutorialPage({
           item.tags.some((tag) => tutorial.tags.includes(tag))),
     )
     .slice(0, 2);
-  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://devfixes.dev"}/tutorials/${tutorial.slug}`;
+  const pageUrl = `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://mediatoolkit.tech"}/tutorials/${tutorial.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
