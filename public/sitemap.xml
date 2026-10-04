@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://mediatoolkit.tech/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://mediatoolkit.tech/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://mediatoolkit.tech/contact</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://mediatoolkit.tech/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://mediatoolkit.tech/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
   <url><loc>https://mediatoolkit.tech/category/pdf</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mediatoolkit.tech/category/image</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://mediatoolkit.tech/category/convert</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
@@ -15,12 +11,36 @@
   <url><loc>https://mediatoolkit.tech/tool/ocr-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/pdf-to-jpg</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/jpg-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/rotate-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/protect-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/unlock-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/watermark-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/page-numbers</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/repair-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/pdf-to-pdfa</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/validate-pdfa</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/pdf-to-text</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/office-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/html-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/compress-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/convert-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/crop-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/resize-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/rotate-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/watermark-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/repair-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/html-to-image</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/json-formatter</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/json-to-csv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/csv-to-json</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/csv-to-excel</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/excel-to-csv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://mediatoolkit.tech/tool/office-to-pdf</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/excel-to-json</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/json-to-excel</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://mediatoolkit.tech/tool/docx-to-text</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/tool/docx-to-html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://mediatoolkit.tech/about</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://mediatoolkit.tech/contact</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://mediatoolkit.tech/privacy</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://mediatoolkit.tech/terms</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
 </urlset>

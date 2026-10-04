@@ -3,8 +3,9 @@
  */
 import { icon } from './icons.js';
 import {
-  CATEGORIES, toolsByCategory, toolIcon, categoryMeta, getTool,
+  CATEGORIES, toolsByCategory, toolIcon, categoryMeta, getTool, getContent,
 } from './registry.js';
+import { introHtml, guideHtml } from './guide.js';
 import { runRemote } from './runner.js';
 import { runLocal, jsonEditorAction } from './local.js';
 import { refreshAds } from './ads.js';
@@ -120,6 +121,15 @@ export function renderTool(tool) {
   const isEditor = tool.inputMode === 'editor';
   const hasOptions = (tool.options?.length ?? 0) > 0;
 
+  // Guide copy: the intro sits under the header, the how-to steps, FAQ and
+  // related-tool links sit below the working tool. Server-rendered into the
+  // HTML as well, so this re-renders the exact same text.
+  const guideContent = getContent(tool.id);
+  const intro = guideContent ? introHtml(guideContent) : '';
+  const guide = guideContent
+    ? guideHtml(guideContent, (id) => getTool(id)?.name ?? id)
+    : '';
+
   const headerHtml = `
     <nav class="breadcrumb">
       <a href="/">Home</a><span class="sep">/</span>
@@ -140,7 +150,7 @@ export function renderTool(tool) {
     </header>`;
 
   if (isEditor) {
-    app.innerHTML = `<div class="tool-page container">${headerHtml}
+    app.innerHTML = `<div class="tool-page container">${headerHtml}${intro}
       <div class="local-editor">
         <div class="local-toolbar">
           <button class="btn btn-primary" style="width:auto" data-action="format">${icon('braces')} Format</button>
@@ -168,6 +178,7 @@ export function renderTool(tool) {
           </div>
         </div>
       </div>
+      ${guide}
     </div>`;
     wireEditor(tool);
     return;
@@ -191,7 +202,7 @@ export function renderTool(tool) {
       <ul class="file-list" data-file-list></ul>`;
 
   app.innerHTML = `<div class="tool-page container">
-    ${headerHtml}
+    ${headerHtml}${intro}
     <div class="tool-layout">
       <div class="panel">
         ${inputBlock}
@@ -240,6 +251,7 @@ export function renderTool(tool) {
         </p>
       </aside>
     </div>
+    ${guide}
   </div>`;
 
   wireFileTool(tool);

@@ -49,6 +49,21 @@ export async function loadRemoteTools() {
   return remoteTools;
 }
 
+/** Guide copy for every tool, including the browser-only ones. */
+let contentMap = {};
+
+export async function loadContent() {
+  const res = await fetch('/api/content');
+  if (!res.ok) throw new Error('Failed to load content');
+  const data = await res.json();
+  contentMap = data.content || {};
+  return contentMap;
+}
+
+export function getContent(id) {
+  return contentMap[id] ?? null;
+}
+
 export function allTools() {
   return [...remoteTools, ...LOCAL_TOOLS];
 }

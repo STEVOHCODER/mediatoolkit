@@ -11,6 +11,7 @@ import express from 'express';
 import multer from 'multer';
 import { ILoveApiClient, ILoveApiError } from './iloveapi.js';
 import { createRoutes } from './routes.js';
+import { renderSeoPage, notFound } from './seo.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -88,9 +89,25 @@ app.use(rateLimit, router);
 // --- static frontend ---------------------------------------------------------
 app.use(express.static(path.join(ROOT, 'public'), { extensions: ['html'] }));
 
-// SPA fallback for hash-less deep links (the app itself uses hash routing).
+// Unmatched API calls answer with JSON rather than the HTML 404 page.
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: 'Not found' });
+});
+
+// Tool and category URLs get their own head (title, description, canonical,
+// structured data) and guide body; anything else unknown is a real 404 so
+// search engines stop seeing duplicate homepage content.
 app.get(/^\/(?!api\/).*/, (req, res) => {
-  res.sendFile(path.join(ROOT, 'public', 'index.html'));
+  const rendered = renderSeoPage(req.path);
+  if (rendered) {
+    res.status(rendered.status).type('html').send(rendered.html);
+    return;
+  }
+  if (req.path === '/') {
+    res.sendFile(path.join(ROOT, 'public', 'index.html'));
+    return;
+  }
+  res.status(404).type('html').send(notFound(req.path));
 });
 
 // --- error handling ----------------------------------------------------------

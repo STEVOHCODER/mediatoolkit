@@ -2,6 +2,7 @@
  * HTTP routes for MediaToolkit.
  *
  *  GET  /api/tools        - public metadata for every remote tool
+ *  GET  /api/content/:id  - guide copy for any tool (remote or browser-only)
  *  POST /api/tools/:id    - run a tool (multipart files or JSON {url})
  *  GET  /api/download/:id - stream a processed result, then clean the task
  *  GET  /api/health       - liveness probe
@@ -9,6 +10,7 @@
 import { Readable } from 'node:stream';
 import { pipeline } from 'node:stream/promises';
 import { TOOLS, getTool } from './registry.js';
+import { TOOLS_SEO } from './content.js';
 
 const DOWNLOAD_TTL_MS = 30 * 60 * 1000;
 
@@ -92,6 +94,34 @@ export function createRoutes({ client }) {
       // ------------------------------------------------------ GET /api/tools
       if (req.method === 'GET' && req.path === '/api/tools') {
         res.json({ tools: TOOLS.map(publicTool) });
+        return;
+      }
+
+      // ------------------------------------------------- GET /api/content/:id
+      // Guide copy for any tool id — remote or browser-only alike. The server
+      // injects this same text into the HTML; the client fetches it to render.
+      // /api/content returns everything in one request so tool pages can be
+      // drawn synchronously with no flash of missing content.
+      if (req.method === 'GET' && req.path.startsWith('/api/content')) {
+        if (req.path === '/api/content') {
+          res.json({ content: TOOLS_SEO });
+          return;
+        }
+        const id = decodeURIComponent(req.path.slice('/api/content/'.length));
+        const entry = TOOLS_SEO[id];
+        if (!entry) {
+          res.status(404).json({ error: 'Unknown tool' });
+          return;
+        }
+        res.json({
+          id,
+          name: entry.name,
+          category: entry.category,
+          intro: entry.intro,
+          steps: entry.steps,
+          faqs: entry.faqs,
+          related: entry.related,
+        });
         return;
       }
 

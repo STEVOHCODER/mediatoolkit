@@ -6,7 +6,7 @@
  *   #/c/:id       landing page scrolled to a category
  *   #/t/:id       tool page
  */
-import { loadRemoteTools, getTool } from './registry.js';
+import { loadRemoteTools, loadContent, getTool } from './registry.js';
 import { renderLanding, renderTool, esc } from './ui.js';
 import { icon } from './icons.js';
 import { route as seoRoute, refreshAds, initConsent } from './ads.js';
@@ -108,7 +108,7 @@ async function boot() {
   seoRoute();
 
   try {
-    await loadRemoteTools();
+    await Promise.all([loadRemoteTools(), loadContent()]);
   } catch (err) {
     app.innerHTML = `<div class="tool-page container">
       <h1>Could not load tools</h1>

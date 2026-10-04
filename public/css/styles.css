@@ -856,6 +856,91 @@ img { max-width: 100%; display: block; }
 .ad-slot { margin: 18px auto; text-align: center; min-height: 0; }
 .ad-slot:empty { display: none; }
 
+/* ============================================================== SEO GUIDE === */
+.tool-intro {
+  margin: 10px 0 0;
+  max-width: 70ch;
+  color: var(--ink-2);
+  font-size: .98rem;
+  line-height: 1.65;
+}
+.category-page .tool-intro { margin: 6px 0 24px; }
+.category-page h1 { margin: 0; }
+
+.tool-guide { margin-top: 34px; display: grid; gap: 30px; }
+.guide-block h2 {
+  margin: 0 0 14px;
+  font-size: 1.22rem;
+  letter-spacing: -.01em;
+}
+
+.guide-steps {
+  margin: 0;
+  padding-left: 1.35rem;
+  display: grid;
+  gap: 11px;
+}
+.guide-steps li { color: var(--ink-2); line-height: 1.62; padding-left: 4px; }
+.guide-steps li::marker { font-weight: 700; color: var(--primary); }
+
+.faq-list { display: grid; gap: 10px; }
+.faq-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+.faq-item summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 600;
+  font-size: .96rem;
+  color: var(--ink);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: '+'; color: var(--primary); font-weight: 700; flex: none; }
+.faq-item[open] summary::after { content: '\2013'; }
+.faq-item p { margin: 11px 0 0; color: var(--muted); line-height: 1.62; font-size: .94rem; }
+
+.related-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+.related-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .94rem;
+  transition: border-color .16s, transform .16s, box-shadow .16s;
+}
+.related-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.related-go { color: var(--primary); }
+
+.category-page .tool-card { flex-direction: column; gap: 7px; text-decoration: none; }
+.category-page .tool-card h3 { margin: 0; font-size: 1.02rem; color: var(--ink); }
+.category-page .tool-card p { margin: 0; color: var(--muted); font-size: .87rem; line-height: 1.55; }
+
+@media (max-width: 640px) {
+  .tool-guide { gap: 26px; }
+  .guide-block h2 { font-size: 1.1rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }

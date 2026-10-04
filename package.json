@@ -9,7 +9,9 @@
     "start": "node server/index.js",
     "dev": "node --watch server/index.js",
     "probe": "node scripts/probe.mjs",
-    "test": "node scripts/e2e-test.mjs"
+    "sitemap": "node scripts/build-sitemap.mjs",
+    "test": "node scripts/e2e-test.mjs",
+    "test:seo": "node scripts/seo-test.mjs"
   },
   "engines": {
     "node": "22.x"
