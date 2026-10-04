@@ -136,6 +136,30 @@ scripts/
   e2e-test.mjs  Full pipeline test (spends ~29 credits)
 ```
 
+## Deployment
+
+- **Production:** https://mediatoolkit.tech (`www` 308-redirects to the apex)
+- **Repository:** https://github.com/STEVOHCODER/mediatoolkit
+- **Vercel project:** `devfixes`, git-linked to `master`, auto-deploys on push
+
+Environment variables required in Vercel **Production** (never committed —
+`.env` is gitignored):
+
+```ini
+ILV_PUBLIC_KEY=project_public_xxx
+ILV_SECRET_KEY=secret_key_xxx
+MAX_FILE_MB=100
+```
+
+`vercel.json` sets `"framework": null` **on purpose**. The Vercel project was
+originally created for a Next.js app, and without that override Vercel runs
+`next build` and fails with *"No Next.js version detected"*. This app needs no
+build step: Vercel installs dependencies, uploads `public/` as static files, and
+packages `api/index.js` as the serverless function.
+
+> Vercel rejects request bodies larger than **4.5 MB**, so `MAX_FILE_MB` above
+> that will not be reachable in production.
+
 ## Production notes
 
 - Put the app behind HTTPS and keep `MAX_FILE_MB` aligned with your proxy's
