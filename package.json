@@ -1,42 +1,24 @@
 {
   "name": "mediatoolkit",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "MediaToolkit.tech - all-in-one document & image toolkit powered by iLoveAPI with free built-in JSON/CSV/Excel/Word tools",
+  "type": "module",
   "private": true,
+  "main": "server/index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint",
-    "typecheck": "tsc --noEmit",
-    "supabase:push": "supabase db push"
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "probe": "node scripts/probe.mjs",
+    "test": "node scripts/e2e-test.mjs"
+  },
+  "engines": {
+    "node": "22.x"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1091.0",
-    "@aws-sdk/s3-request-presigner": "^3.1091.0",
-    "@supabase/ssr": "^0.12.3",
-    "@supabase/supabase-js": "^2.110.7",
-    "e2b": "^2.38.2",
-    "lucide-react": "^1.25.0",
-    "next": "16.2.12",
-    "openai": "^6.48.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "zod": "^4.4.3"
-  },
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.12",
-    "tailwindcss": "^4",
-    "typescript": "^5"
-  },
-  "overrides": {
-    "postcss": "^8.5.10",
-    "sharp": "0.35.3"
+    "express": "^5.1.0",
+    "mammoth": "^1.11.0",
+    "multer": "^2.0.2",
+    "undici": "^7.30.0",
+    "xlsx": "^0.18.5"
   }
 }
