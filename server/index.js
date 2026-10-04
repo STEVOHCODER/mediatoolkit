@@ -66,6 +66,14 @@ setInterval(() => {
 
 app.use(express.json({ limit: '1mb' }));
 
+// The client fetches /api/tools and /api/content on boot, so these URLs have
+// to stay crawlable - blocking them in robots.txt makes Googlebot fail the
+// render. Keep them out of the index with a header instead of a Disallow.
+app.use('/api', (req, res, next) => {
+  res.set('X-Robots-Tag', 'noindex, follow');
+  next();
+});
+
 const router = createRoutes({ client });
 
 // Tool runs accept multipart (files + options fields) or plain JSON (url tools).

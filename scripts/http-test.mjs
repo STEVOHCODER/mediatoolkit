@@ -72,6 +72,15 @@ try {
   check('about 200 + og:url', about.status === 200 && about.body.includes('og:url" content="https://mediatoolkit.tech/about"'));
   check('sitemap 43 urls', (sm.body.match(/<loc>/g) || []).length === 43, String((sm.body.match(/<loc>/g) || []).length));
   check('robots 200', robots.status === 200);
+
+  for (const p of ['/api/tools', '/api/content']) {
+    const res = await fetch(BASE + p);
+    const tag = res.headers.get('x-robots-tag') || '';
+    check(`${p} sends X-Robots-Tag noindex`, /noindex/.test(tag), tag || 'none');
+    await res.text();
+  }
+  const robotsBody = robots.body;
+  check('robots.txt does not block /api/', !/Disallow:[ \t]*\/api\//i.test(robotsBody), robotsBody.split('\n')[2] || '');
 } finally {
   server.kill();
 }

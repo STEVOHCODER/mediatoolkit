@@ -93,5 +93,18 @@ check(
 check('sitemap has no duplicate URLs', new Set(locs).size === locs.length);
 check('sitemap declares robots.txt sitemap', true, `${locs.length} urls`);
 
+// --------------------------------------------------- crawler access rules --
+// Disallow: /api/ makes Googlebot refuse the XHRs the client makes on boot,
+// which in turn wipes the server-rendered <main> when the fetch throws.
+const robots = readFileSync(new URL('../public/robots.txt', import.meta.url), 'utf8');
+check('robots.txt does not block /api/', !/Disallow:[ \t]*\/api\//i.test(robots));
+check('robots.txt still declares the sitemap', /Sitemap:[ \t]*https:\/\/mediatoolkit\.tech\/sitemap\.xml/.test(robots));
+
+const appJs = readFileSync(new URL('../public/js/app.js', import.meta.url), 'utf8');
+check(
+  'boot failure preserves server-rendered content',
+  /app\.hasChildNodes\(\)/.test(appJs) && /Could not load tools/.test(appJs),
+);
+
 console.log(failures === 0 ? '\nALL PASS' : `\n${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

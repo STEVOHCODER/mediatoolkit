@@ -110,10 +110,15 @@ async function boot() {
   try {
     await Promise.all([loadRemoteTools(), loadContent()]);
   } catch (err) {
-    app.innerHTML = `<div class="tool-page container">
-      <h1>Could not load tools</h1>
-      <p style="color:var(--muted)">${esc(err.message)} - is the server running?</p>
-    </div>`;
+    // Tool and category pages are already server-rendered into <main>. Only
+    // fall back to this error when there is nothing to preserve, otherwise a
+    // blocked or flaky fetch hands crawlers an empty page.
+    if (!app.hasChildNodes()) {
+      app.innerHTML = `<div class="tool-page container">
+        <h1>Could not load tools</h1>
+        <p style="color:var(--muted)">${esc(err.message)} - is the server running?</p>
+      </div>`;
+    }
     return;
   }
 
