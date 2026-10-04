@@ -3,14 +3,14 @@
 Production Next.js application served on `https://mediatoolkit.tech` for
 searching, understanding, and fixing developer errors.
 
-The GitHub repository remains `STEVOHCODER/devfixes`; the Vercel project is
+The GitHub repository is `STEVOHCODER/mediatoolkit`; the Vercel project is
 `devfixes` and the production domain attached to it is `mediatoolkit.tech`.
 
 ## Product surfaces
 
 - Search-first homepage and fuzzy error index
 - Dedicated VS Code extension guide with named extensions, install commands,
-  purposes, and a downloadable DevFixes companion VSIX
+  purposes, and a downloadable MediaToolkit companion VSIX
 - GitHub repository guide explaining what important official repositories are
   useful for during debugging
 - Error Fingerprint detection for pasted traces and logs
@@ -56,7 +56,7 @@ The editor supports:
 
 - Draft, review, and published states
 - Loading existing Supabase articles back into the editor
-- Importing a complete DevFixes article from a JSON file
+- Importing a complete MediaToolkit article from a JSON file
 - Downloading a valid JSON template and copying complete draft JSON
 - Language, framework, severity, difficulty, tags, and popularity
 - Beginner meaning and common causes
@@ -89,7 +89,7 @@ search index, article route, and sitemap.
    - Select `Import Markdown` to load the body from an `.md` file, then complete
      the metadata and learning fields in the studio.
    - Select `Import JSON` to load a complete tutorial object.
-3. Use the download button to get `devfixes-tutorial-template.json` when starting
+3. Use the download button to get `MediaToolkit-tutorial-template.json` when starting
    a new JSON tutorial. The imported file is validated before it can be saved.
 4. Use `Preview` to inspect the public route. Code blocks on the public page have
    their own copy button.
@@ -197,7 +197,7 @@ private logs on the user's device while still making them reusable as lessons.
 
 ## GitHub hosting
 
-The source repository is hosted at `https://github.com/STEVOHCODER/devfixes`.
+The source repository is hosted at `https://github.com/STEVOHCODER/mediatoolkit`.
 GitHub Pages publishes the project landing page from `github-pages/`. The full
 Next.js application must remain on Vercel or another Node-compatible host because
 GitHub Pages cannot run admin APIs, Supabase server access, uploads, or sandboxes.
@@ -281,5 +281,5 @@ npm run package
 
 Packaging writes `public/downloads/devfixes-error-search-0.1.0.vsix`, which is
 served by the `/resources/vscode` page. The extension opens selected diagnostic
-text in DevFixes search or the Error Fingerprint debugger and does not collect
+text in MediaToolkit search or the Error Fingerprint debugger and does not collect
 telemetry.

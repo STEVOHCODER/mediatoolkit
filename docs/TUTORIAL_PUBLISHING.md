@@ -1,4 +1,4 @@
-# DevFixes Tutorial Publishing
+# MediaToolkit Tutorial Publishing
 
 The tutorial system has three supported authoring paths:
 
